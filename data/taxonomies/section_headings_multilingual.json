@@ -1,0 +1,20 @@
+{
+  "ar": {
+    "summary": ["ملخص", "نبذة", "نبذة شخصية", "الهدف الوظيفي"],
+    "skills": ["المهارات", "مهارات", "المهارات التقنية", "الكفاءات"],
+    "experience": ["الخبرات", "خبرة", "الخبرة العملية", "التاريخ الوظيفي"],
+    "education": ["التعليم", "المؤهلات", "المؤهلات الأكاديمية", "الدراسة"],
+    "certifications": ["الشهادات", "شهادات", "الرخص والشهادات"],
+    "projects": ["المشاريع", "مشاريع", "أعمال"],
+    "languages": ["اللغات", "لغات"]
+  },
+  "fr": {
+    "summary": ["résumé", "resume", "profil", "objectif", "à propos"],
+    "skills": ["compétences", "competences", "compétences techniques", "savoir-faire"],
+    "experience": ["expérience professionnelle", "experience professionnelle", "expériences", "experiences", "parcours professionnel"],
+    "education": ["formation", "éducation", "education", "diplômes", "diplomes", "parcours académique"],
+    "certifications": ["certifications", "certificats"],
+    "projects": ["projets", "réalisations", "realisations"],
+    "languages": ["langues", "compétences linguistiques"]
+  }
+}

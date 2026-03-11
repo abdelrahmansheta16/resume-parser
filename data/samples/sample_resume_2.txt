@@ -1,0 +1,58 @@
+Sarah Johnson
+Email: sarah.johnson@gmail.com
+Phone: (555) 987-6543
+Location: New York, NY
+Portfolio: https://sarahjohnson.dev
+LinkedIn: https://linkedin.com/in/sarahjohnson
+
+Professional Summary
+Data Scientist with 3 years of experience in machine learning, statistical modeling, and data analysis. Skilled in building end-to-end ML pipelines and deploying models to production. Strong background in NLP and computer vision.
+
+Technical Skills
+Programming: Python, R, SQL, Java
+ML/AI: TensorFlow, PyTorch, scikit-learn, Keras, Hugging Face, OpenCV
+Data: Pandas, NumPy, Spark, Airflow, dbt
+Cloud: AWS (SageMaker, S3, Lambda), GCP (BigQuery, Vertex AI)
+Tools: Git, Docker, MLflow, Jupyter, Tableau, Power BI
+Databases: PostgreSQL, MongoDB, Snowflake
+
+Experience
+
+Data Scientist | DataCorp Analytics | New York, NY | March 2023 - Present
+- Developed NLP pipeline for sentiment analysis processing 1M+ customer reviews
+- Built recommendation engine increasing user engagement by 25%
+- Created automated model monitoring dashboard using Streamlit and MLflow
+- Led A/B testing framework design for product feature evaluation
+- Collaborated with engineering team to deploy models using Docker and AWS SageMaker
+
+Junior Data Scientist | TechStart Inc. | Boston, MA | June 2021 - February 2023
+- Built churn prediction model with 92% accuracy using gradient boosting
+- Automated ETL pipelines using Airflow and Python
+- Created data visualization dashboards in Tableau for executive reporting
+- Performed customer segmentation analysis using clustering techniques
+- Contributed to internal Python package for common data transformations
+
+Data Science Intern | BigData Labs | Remote | January 2021 - May 2021
+- Assisted in building image classification model using PyTorch
+- Cleaned and preprocessed datasets with 100K+ records
+- Generated weekly analysis reports for stakeholders
+
+Education
+
+Master of Science in Data Science
+Columbia University, New York, NY
+Graduated: December 2021
+GPA: 3.9/4.0
+
+Bachelor of Science in Mathematics
+Boston University, Boston, MA
+Graduated: May 2019
+
+Certifications
+- Google Professional Machine Learning Engineer (2023)
+- AWS Machine Learning Specialty (2022)
+
+Projects
+- COVID-19 trend prediction dashboard (featured on Kaggle)
+- Customer lifetime value prediction engine
+- Automated resume screening tool using NLP

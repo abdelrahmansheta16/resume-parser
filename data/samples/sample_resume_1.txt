@@ -1,0 +1,52 @@
+JOHN DOE
+john.doe@email.com | +1-555-123-4567 | San Francisco, CA
+LinkedIn: https://linkedin.com/in/johndoe | GitHub: https://github.com/johndoe
+
+SUMMARY
+Experienced backend developer with 5+ years of experience in Python, FastAPI, and cloud-native applications. Passionate about building scalable systems and mentoring junior developers.
+
+SKILLS
+Python, FastAPI, Django, Flask, PostgreSQL, MongoDB, Redis, Docker, Kubernetes, AWS, Git, CI/CD, REST APIs, GraphQL, Linux, Terraform, Agile
+
+WORK EXPERIENCE
+
+Senior Backend Developer
+ABC Technology Inc., San Francisco, CA
+January 2022 - Present
+- Led development of microservices architecture serving 10M+ API requests daily
+- Designed and implemented event-driven data pipeline using Kafka and Python
+- Reduced API response times by 40% through query optimization and caching strategies
+- Mentored team of 4 junior developers through code reviews and pair programming
+- Implemented CI/CD pipelines using GitHub Actions and Docker
+
+Backend Developer
+XYZ Software Solutions, Austin, TX
+June 2019 - December 2021
+- Developed RESTful APIs using FastAPI and Django for e-commerce platform
+- Managed PostgreSQL and MongoDB databases serving 500K+ users
+- Built automated testing framework increasing code coverage from 45% to 85%
+- Implemented OAuth2 authentication and role-based access control
+- Deployed applications on AWS using ECS, RDS, and CloudFront
+
+Software Engineering Intern
+StartupCo, Remote
+May 2018 - August 2018
+- Built internal dashboard using Flask and React
+- Wrote unit tests for core business logic modules
+- Participated in daily standups and sprint planning
+
+EDUCATION
+
+Bachelor of Science in Computer Science
+University of California, Berkeley
+Graduated: May 2019
+GPA: 3.7/4.0
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect - Associate (2023)
+- Certified Kubernetes Administrator (2022)
+
+PROJECTS
+- Open-source CLI tool for database migrations (500+ GitHub stars)
+- Real-time chat application using WebSockets and Redis
+- Personal blog built with Next.js and deployed on Vercel

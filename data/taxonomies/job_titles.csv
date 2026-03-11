@@ -1,0 +1,29 @@
+canonical,aliases,seniority
+Software Engineer,"software engineer,software developer,swe,programmer,coder,developer",mid
+Senior Software Engineer,"senior software engineer,senior developer,sr software engineer,sr developer,sr. software engineer,staff engineer",senior
+Junior Software Engineer,"junior software engineer,junior developer,jr developer,jr software engineer,associate developer",junior
+Principal Engineer,"principal engineer,principal software engineer,distinguished engineer",principal
+Frontend Developer,"frontend developer,front-end developer,frontend engineer,front end developer,ui developer",mid
+Backend Developer,"backend developer,back-end developer,backend engineer,back end developer,server-side developer",mid
+Full Stack Developer,"full stack developer,fullstack developer,full-stack engineer,fullstack engineer",mid
+Data Scientist,"data scientist,ds,applied scientist",mid
+Senior Data Scientist,"senior data scientist,lead data scientist,sr data scientist",senior
+Data Engineer,"data engineer,de,data pipeline engineer",mid
+Machine Learning Engineer,"machine learning engineer,ml engineer,mle,ai engineer",mid
+DevOps Engineer,"devops engineer,devops,site reliability engineer,sre,infrastructure engineer,platform engineer",mid
+Cloud Engineer,"cloud engineer,cloud architect,aws engineer,azure engineer,gcp engineer",mid
+Product Manager,"product manager,pm,product owner,po",mid
+Engineering Manager,"engineering manager,em,dev manager,development manager,software engineering manager",senior
+Technical Lead,"technical lead,tech lead,team lead,lead developer,lead engineer",senior
+CTO,"cto,chief technology officer,chief technical officer,vp engineering,vp of engineering",executive
+Data Analyst,"data analyst,business analyst,bi analyst,analytics engineer",mid
+QA Engineer,"qa engineer,quality assurance,test engineer,sdet,qa analyst,tester",mid
+Mobile Developer,"mobile developer,ios developer,android developer,mobile engineer,react native developer,flutter developer",mid
+Security Engineer,"security engineer,cybersecurity engineer,information security,infosec,appsec",mid
+Solutions Architect,"solutions architect,enterprise architect,technical architect",senior
+Project Manager,"project manager,technical project manager,program manager",mid
+UX Designer,"ux designer,ui/ux designer,user experience designer,product designer",mid
+Database Administrator,"dba,database administrator,database engineer",mid
+System Administrator,"sysadmin,system administrator,systems engineer,it administrator",mid
+Research Scientist,"research scientist,researcher,applied research scientist",mid
+Intern,"intern,software intern,engineering intern,trainee",intern

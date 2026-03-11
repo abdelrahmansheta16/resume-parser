@@ -1,0 +1,17 @@
+canonical,aliases,level
+High School Diploma,"high school,hs diploma,secondary school,ged",high_school
+Associate of Arts,"aa,associate of arts,associate degree,associates",associate
+Associate of Science,"as,associate of science",associate
+Bachelor of Arts,"ba,b.a.,bachelor of arts,baccalaureate",bachelor
+Bachelor of Science,"bs,b.s.,b.sc,bsc,bachelor of science",bachelor
+Bachelor of Engineering,"be,b.e.,beng,b.eng,bachelor of engineering",bachelor
+Bachelor of Technology,"btech,b.tech,bachelor of technology",bachelor
+Bachelor of Business Administration,"bba,b.b.a.,bachelor of business",bachelor
+Master of Arts,"ma,m.a.,master of arts",master
+Master of Science,"ms,m.s.,m.sc,msc,master of science",master
+Master of Engineering,"meng,m.eng,master of engineering",master
+Master of Business Administration,"mba,m.b.a.,master of business",master
+Master of Technology,"mtech,m.tech,master of technology",master
+Doctor of Philosophy,"phd,ph.d.,doctorate,doctoral",doctorate
+Doctor of Medicine,"md,m.d.,doctor of medicine",doctorate
+Juris Doctor,"jd,j.d.,juris doctor,law degree",doctorate

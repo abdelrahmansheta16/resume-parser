@@ -1,0 +1,147 @@
+canonical,aliases,category
+Python,"python3,py,cpython",programming
+JavaScript,"js,javascript,ecmascript,ES6,ES2015",programming
+TypeScript,"ts,typescript",programming
+Java,"java,jdk",programming
+C++,"cpp,c plus plus,cplusplus",programming
+C#,"csharp,c sharp,c#.net",programming
+Go,"golang,go lang",programming
+Rust,"rust,rustlang",programming
+Ruby,"ruby,rb",programming
+PHP,"php",programming
+Swift,"swift",programming
+Kotlin,"kotlin,kt",programming
+Scala,"scala",programming
+R,"r,rlang,r-lang",programming
+MATLAB,"matlab",programming
+SQL,"sql,structured query language",database
+PostgreSQL,"postgres,postgresql,pg",database
+MySQL,"mysql,mariadb",database
+MongoDB,"mongo,mongodb,nosql",database
+Redis,"redis",database
+Elasticsearch,"elasticsearch,elastic,es",database
+SQLite,"sqlite,sqlite3",database
+DynamoDB,"dynamodb,dynamo",database
+Cassandra,"cassandra",database
+Neo4j,"neo4j,graph database",database
+React,"react,reactjs,react.js",frontend
+Angular,"angular,angularjs,angular.js",frontend
+Vue.js,"vue,vuejs,vue.js,vue3",frontend
+Next.js,"next,nextjs,next.js",frontend
+Svelte,"svelte,sveltekit",frontend
+HTML,"html,html5",frontend
+CSS,"css,css3",frontend
+Tailwind CSS,"tailwind,tailwindcss,tailwind css",frontend
+Bootstrap,"bootstrap",frontend
+SASS,"sass,scss",frontend
+jQuery,"jquery",frontend
+Node.js,"node,nodejs,node.js",backend
+Express.js,"express,expressjs,express.js",backend
+FastAPI,"fastapi,fast-api",backend
+Django,"django",backend
+Flask,"flask",backend
+Spring Boot,"spring,springboot,spring boot",backend
+Ruby on Rails,"rails,ruby on rails,ror",backend
+ASP.NET,"asp.net,aspnet,dotnet,.net",backend
+Laravel,"laravel",backend
+NestJS,"nestjs,nest.js",backend
+GraphQL,"graphql,gql",backend
+REST API,"rest,restful,rest api,restful api",backend
+AWS,"aws,amazon web services",cloud
+Azure,"azure,microsoft azure",cloud
+Google Cloud,"gcp,google cloud,google cloud platform",cloud
+Docker,"docker,containerization",devops
+Kubernetes,"kubernetes,k8s",devops
+Terraform,"terraform,tf",devops
+Ansible,"ansible",devops
+Jenkins,"jenkins",devops
+GitHub Actions,"github actions,gh actions",devops
+GitLab CI,"gitlab ci,gitlab ci/cd",devops
+CircleCI,"circleci,circle ci",devops
+CI/CD,"ci/cd,cicd,continuous integration,continuous deployment",devops
+Linux,"linux,ubuntu,debian,centos,rhel",devops
+Git,"git,version control",devops
+Nginx,"nginx",devops
+Apache,"apache,httpd",devops
+TensorFlow,"tensorflow,tf",ml
+PyTorch,"pytorch,torch",ml
+scikit-learn,"sklearn,scikit learn,scikit-learn",ml
+Keras,"keras",ml
+Pandas,"pandas,pd",ml
+NumPy,"numpy,np",ml
+Hugging Face,"huggingface,hugging face,hf",ml
+OpenCV,"opencv,cv2",ml
+NLTK,"nltk",ml
+spaCy,"spacy",ml
+LangChain,"langchain",ml
+MLflow,"mlflow",ml
+Apache Spark,"spark,pyspark,apache spark",data
+Hadoop,"hadoop",data
+Airflow,"airflow,apache airflow",data
+Kafka,"kafka,apache kafka",data
+dbt,"dbt,data build tool",data
+Tableau,"tableau",data
+Power BI,"powerbi,power bi",data
+Looker,"looker",data
+Snowflake,"snowflake",data
+Databricks,"databricks",data
+Agile,"agile,scrum,kanban",methodology
+Jira,"jira",tools
+Confluence,"confluence",tools
+Figma,"figma",tools
+Photoshop,"photoshop,adobe photoshop",tools
+Postman,"postman",tools
+Swagger,"swagger,openapi",tools
+Salesforce,"salesforce,sfdc,sales cloud,service cloud",business
+SAP,"sap,sap erp,sap hana",business
+HubSpot,"hubspot,hub spot",business
+CRM,"crm,customer relationship management",business
+ERP,"erp,enterprise resource planning",business
+ServiceNow,"servicenow,service now,snow",business
+Dynamics 365,"dynamics 365,dynamics365,ms dynamics",business
+Oracle,"oracle,oracle db,oracle cloud",business
+Microsoft Office,"microsoft office,ms office,office 365,microsoft 365",office
+Excel,"excel,ms excel,microsoft excel,spreadsheets",office
+PowerPoint,"powerpoint,ms powerpoint,ppt",office
+Word,"word,ms word,microsoft word",office
+SharePoint,"sharepoint,ms sharepoint",office
+Microsoft Teams,"teams,ms teams,microsoft teams",office
+Slack,"slack",tools
+Trello,"trello",tools
+Asana,"asana",tools
+Notion,"notion",tools
+Monday.com,"monday,monday.com",tools
+Webpack,"webpack",frontend
+Vite,"vite,vitejs",frontend
+gRPC,"grpc,g-rpc",backend
+RabbitMQ,"rabbitmq,rabbit mq",backend
+Celery,"celery",backend
+Prometheus,"prometheus",devops
+Grafana,"grafana",devops
+Datadog,"datadog",devops
+New Relic,"new relic,newrelic",devops
+Cypress,"cypress,cypress.io",testing
+Selenium,"selenium,selenium webdriver",testing
+Jest,"jest,jestjs",testing
+Playwright,"playwright",testing
+Flutter,"flutter",mobile
+React Native,"react native,reactnative",mobile
+ITIL,"itil,it infrastructure library",methodology
+Six Sigma,"six sigma,lean six sigma",methodology
+Networking,"networking,tcp/ip,dns,dhcp,lan,wan",infrastructure
+Firewall,"firewall,firewalls,palo alto,fortinet",infrastructure
+Active Directory,"active directory,ad,ldap",infrastructure
+VMware,"vmware,vsphere,esxi",infrastructure
+SAS,"sas,sas analytics",data
+SPSS,"spss",data
+Stata,"stata",data
+Communication,"communication,written communication,verbal communication",soft_skill
+Leadership,"leadership,team lead,team leadership",soft_skill
+Problem Solving,"problem solving,analytical thinking,critical thinking",soft_skill
+Teamwork,"teamwork,collaboration,team player",soft_skill
+Project Management,"project management,pm",soft_skill
+Negotiation,"negotiation,negotiating",soft_skill
+Presentation,"presentation,presentations,public speaking",soft_skill
+Sales,"sales,selling,business development,bdr,sdr",soft_skill
+Account Management,"account management,account manager,key accounts",soft_skill
+Customer Service,"customer service,customer support,client relations",soft_skill

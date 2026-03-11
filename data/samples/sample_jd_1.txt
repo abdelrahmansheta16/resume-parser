@@ -1,0 +1,39 @@
+Senior Backend Engineer
+
+Company: TechForward Inc.
+Location: San Francisco, CA (Hybrid)
+
+About the Role
+We are looking for a Senior Backend Engineer to join our platform team. You will design, build, and maintain scalable backend services that power our core product serving millions of users.
+
+Requirements
+
+Required Skills:
+- 5+ years of experience in backend development
+- Strong proficiency in Python
+- Experience with FastAPI or Django
+- Deep knowledge of PostgreSQL and Redis
+- Experience with Docker and Kubernetes
+- Familiarity with AWS or GCP cloud services
+- Strong understanding of RESTful API design
+- Experience with CI/CD pipelines
+- Excellent problem-solving skills
+
+Preferred Skills:
+- Experience with event-driven architecture (Kafka, RabbitMQ)
+- Knowledge of GraphQL
+- Experience with Terraform or other IaC tools
+- Contributions to open-source projects
+- Experience mentoring junior engineers
+
+Education:
+- Bachelor's degree in Computer Science or related field
+- Master's degree preferred
+
+What We Offer:
+- Competitive salary ($180K - $230K)
+- Equity package
+- Flexible work schedule
+- Health, dental, and vision insurance
+- 401(k) with company match
+- Learning and development budget
