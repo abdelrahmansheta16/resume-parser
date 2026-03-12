@@ -8,9 +8,17 @@ services:
     ports:
       - "${API_PORT:-8000}:8000"
     volumes:
-      - ./data:/app/data
+      - chromadb_data:/app/data/chromadb
+      - feedback_data:/app/data/feedback
+      - review_data:/app/data/review
     env_file:
       - .env
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SUPABASE_JWT_SECRET=${SUPABASE_JWT_SECRET}
+      - SUPABASE_STORAGE_BUCKET=${SUPABASE_STORAGE_BUCKET:-documents}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
@@ -19,14 +27,19 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile.streamlit
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://api:8000
+        - NEXT_PUBLIC_SUPABASE_URL=${SUPABASE_URL}
+        - NEXT_PUBLIC_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
     ports:
-      - "${STREAMLIT_PORT:-8501}:8501"
-    volumes:
-      - ./data:/app/data
-    env_file:
-      - .env
+      - "3000:3000"
     depends_on:
       api:
         condition: service_healthy
+
+volumes:
+  chromadb_data:
+  feedback_data:
+  review_data:

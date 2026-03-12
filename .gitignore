@@ -20,6 +20,11 @@ data/processed/*
 !data/processed/.gitkeep
 app/models/artifacts/*
 !app/models/artifacts/.gitkeep
+data/chromadb/
+data/feedback/*
+!data/feedback/.gitkeep
+data/review/*
+!data/review/.gitkeep
 .DS_Store
 *.swp
 *.swo

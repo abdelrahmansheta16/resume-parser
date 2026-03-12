@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 
 from app.core.logging import get_logger
+from app.core.paths import TAXONOMIES_DIR
 
 logger = get_logger(__name__)
 
@@ -88,19 +91,56 @@ class ResumeSection:
     end_line: int
 
 
-def detect_sections(text: str) -> dict[str, ResumeSection]:
+@lru_cache(maxsize=4)
+def _load_multilingual_headings(lang: str) -> dict[str, list[str]]:
+    """Load section heading patterns for a given language."""
+    path = TAXONOMIES_DIR / "section_headings_multilingual.json"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get(lang, {})
+
+
+def _build_multilingual_patterns(lang: str) -> tuple[re.Pattern, dict[str, str]]:
+    """Build heading regex including multilingual patterns for the given language."""
+    all_pats: list[str] = list(_all_patterns)
+    pat_to_sec: dict[str, str] = dict(_pattern_to_section)
+
+    if lang != "en":
+        headings = _load_multilingual_headings(lang)
+        for section_name, heading_list in headings.items():
+            for heading in heading_list:
+                escaped = re.escape(heading)
+                all_pats.append(escaped)
+                pat_to_sec[escaped] = section_name
+
+    heading_re = re.compile(
+        r"^[\s]*(?:" + "|".join(all_pats) + r")[\s]*:?[\s]*$",
+        re.IGNORECASE | re.MULTILINE,
+    )
+    return heading_re, pat_to_sec
+
+
+def detect_sections(text: str, lang: str = "en") -> dict[str, ResumeSection]:
     """Detect resume sections and return a mapping of section name -> content."""
     lines = text.split("\n")
     section_starts: list[tuple[int, str]] = []
+
+    if lang == "en":
+        heading_re = HEADING_RE
+        pat_to_sec = _pattern_to_section
+    else:
+        heading_re, pat_to_sec = _build_multilingual_patterns(lang)
 
     for i, line in enumerate(lines):
         stripped = line.strip()
         if not stripped:
             continue
         # Check if line matches a heading pattern
-        if HEADING_RE.match(line):
+        if heading_re.match(line):
             # Determine which section this maps to
-            for pattern, section_name in _pattern_to_section.items():
+            for pattern, section_name in pat_to_sec.items():
                 if re.match(
                     r"^[\s]*" + pattern + r"[\s]*:?[\s]*$",
                     line,

@@ -3,6 +3,7 @@ import re
 from app.api.schemas import EducationSchema, ExperienceSchema, ParsedResume
 from app.core.logging import get_logger
 from app.extraction.education import extract_education
+from app.models.config import config
 from app.extraction.entities import (
     extract_location,
     extract_name_from_header,
@@ -12,15 +13,33 @@ from app.extraction.experience import estimate_total_years, extract_experience
 from app.extraction.links import extract_contact_info
 from app.extraction.sections import detect_sections
 from app.extraction.skills import extract_skills_from_section, extract_skills_from_text
+from app.parsing.language_detect import detect_language
 
 logger = get_logger(__name__)
 
 
 def structure_resume(cleaned_text: str, include_raw: bool = False) -> ParsedResume:
     """Run full extraction pipeline on cleaned resume text."""
+    # Try LLM parsing first if enabled
+    if config.llm_parsing_enabled and config.anthropic_api_key:
+        from app.extraction.llm_resume_parser import parse_resume_with_llm
+        try:
+            llm_result = parse_resume_with_llm(cleaned_text)
+            if llm_result:
+                if include_raw:
+                    llm_result.raw_text = cleaned_text
+                return llm_result
+        except Exception as e:
+            logger.warning("LLM resume parsing failed, falling back to rule-based: %s", e)
+
+    # Rule-based pipeline
     result = ParsedResume()
     if include_raw:
         result.raw_text = cleaned_text
+
+    # 0. Detect language
+    lang = detect_language(cleaned_text)
+    result.detected_language = lang
 
     # 1. Extract contact info from full text
     contact = extract_contact_info(cleaned_text)
@@ -30,8 +49,8 @@ def structure_resume(cleaned_text: str, include_raw: bool = False) -> ParsedResu
     result.github = contact.github
     result.portfolio = contact.portfolio
 
-    # 2. Detect sections
-    sections = detect_sections(cleaned_text)
+    # 2. Detect sections (language-aware)
+    sections = detect_sections(cleaned_text, lang=lang)
 
     # 3. Extract name from header
     if "header" in sections:
@@ -47,12 +66,14 @@ def structure_resume(cleaned_text: str, include_raw: bool = False) -> ParsedResu
     if "summary" in sections:
         result.summary = sections["summary"].content.strip()
 
-    # 6. Extract skills
+    # 6. Extract skills (language-aware taxonomy)
+    from app.extraction.skills import get_taxonomy
+    taxonomy = get_taxonomy(lang=lang)
     skills: set[str] = set()
     if "skills" in sections:
-        skills.update(extract_skills_from_section(sections["skills"].content))
+        skills.update(extract_skills_from_section(sections["skills"].content, taxonomy))
     # Also scan full text for skills not in a dedicated section
-    skills.update(extract_skills_from_text(cleaned_text))
+    skills.update(extract_skills_from_text(cleaned_text, taxonomy))
     result.skills = sorted(skills)
 
     # 7. Extract education

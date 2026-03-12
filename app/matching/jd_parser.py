@@ -3,6 +3,7 @@ import re
 from app.api.schemas import ParsedJobDescription
 from app.core.logging import get_logger
 from app.extraction.skills import extract_skills_from_text, get_taxonomy
+from app.models.config import config
 
 logger = get_logger(__name__)
 
@@ -43,6 +44,18 @@ SOFT_SKILL_KEYWORDS = [
 
 def parse_job_description(text: str) -> ParsedJobDescription:
     """Parse a job description into structured requirements."""
+    # Try LLM parsing first if enabled
+    if config.llm_parsing_enabled and config.anthropic_api_key:
+        from app.matching.llm_jd_parser import parse_jd_with_llm
+        try:
+            llm_result = parse_jd_with_llm(text)
+            if llm_result:
+                llm_result.raw_text = text
+                return llm_result
+        except Exception as e:
+            logger.warning("LLM JD parsing failed, falling back to rule-based: %s", e)
+
+    # Rule-based pipeline
     result = ParsedJobDescription(raw_text=text)
     taxonomy = get_taxonomy()
 

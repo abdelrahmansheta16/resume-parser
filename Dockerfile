@@ -19,7 +19,7 @@ RUN python -m spacy download en_core_web_sm
 
 COPY . .
 
-RUN mkdir -p data/raw data/processed data/feedback data/review data/chromadb
+RUN mkdir -p data/chromadb data/feedback data/review data/templates
 
 RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser

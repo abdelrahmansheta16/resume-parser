@@ -29,10 +29,11 @@ def load_skill_taxonomy(path=None) -> SkillTaxonomy:
         for row in reader:
             canonical = row["canonical"].strip()
             aliases = [a.strip() for a in row["aliases"].split(",")]
-            category = row["category"].strip()
+            category = row.get("category", "").strip()
 
             taxonomy.canonical_to_aliases[canonical] = aliases
-            taxonomy.canonical_to_category[canonical] = category
+            if category:
+                taxonomy.canonical_to_category[canonical] = category
 
             # Map each alias -> canonical (lowered for matching)
             for alias in aliases:
@@ -43,15 +44,38 @@ def load_skill_taxonomy(path=None) -> SkillTaxonomy:
     return taxonomy
 
 
-# Module-level singleton
-_taxonomy: SkillTaxonomy | None = None
+def _load_language_taxonomy(taxonomy: SkillTaxonomy, lang: str) -> None:
+    """Merge a language-specific taxonomy file into the existing taxonomy."""
+    lang_file = TAXONOMIES_DIR / f"skills_{lang}.csv"
+    if not lang_file.exists():
+        return
+    with open(lang_file, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            canonical = row["canonical"].strip()
+            aliases = [a.strip() for a in row["aliases"].split(",")]
+            # Merge aliases into existing canonical entries
+            if canonical in taxonomy.canonical_to_aliases:
+                taxonomy.canonical_to_aliases[canonical].extend(aliases)
+            else:
+                taxonomy.canonical_to_aliases[canonical] = aliases
+            for alias in aliases:
+                taxonomy.alias_to_canonical[alias.lower()] = canonical
+    logger.info("Merged %s aliases from skills_%s.csv", lang, lang)
 
 
-def get_taxonomy() -> SkillTaxonomy:
-    global _taxonomy
-    if _taxonomy is None:
-        _taxonomy = load_skill_taxonomy()
-    return _taxonomy
+# Module-level singletons per language
+_taxonomy_cache: dict[str, SkillTaxonomy] = {}
+
+
+def get_taxonomy(lang: str = "en") -> SkillTaxonomy:
+    global _taxonomy_cache
+    if lang not in _taxonomy_cache:
+        taxonomy = load_skill_taxonomy()
+        if lang != "en":
+            _load_language_taxonomy(taxonomy, lang)
+        _taxonomy_cache[lang] = taxonomy
+    return _taxonomy_cache[lang]
 
 
 def normalize_skill(raw_skill: str, taxonomy: SkillTaxonomy | None = None) -> str | None:
