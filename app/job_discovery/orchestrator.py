@@ -13,6 +13,7 @@ from app.job_discovery.normalizer import normalize_jobs
 from app.job_discovery.query_generator import generate_queries
 from app.job_discovery.remoteok_connector import RemoteOKConnector
 from app.job_discovery.usajobs_connector import USAJobsConnector
+from app.job_discovery.tavily_connector import TavilyConnector
 from app.job_discovery.weworkremotely_connector import WeWorkRemotelyConnector
 from app.models.config import config
 
@@ -20,11 +21,12 @@ logger = get_logger(__name__)
 
 # All available connectors
 ALL_CONNECTORS = [
+    TavilyConnector(),          # Primary — open web search
     JoobleConnector(),
     AdzunaConnector(),
-    USAJobsConnector(),
     RemoteOKConnector(),
     WeWorkRemotelyConnector(),
+    USAJobsConnector(),
     LinkedInConnector(),
 ]
 

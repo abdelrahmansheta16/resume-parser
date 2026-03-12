@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from app.api.schemas import EducationSchema, ExperienceSchema, ParsedJobDescription, ParsedResume
+from app.api.schemas import CandidateProfile, EducationSchema, ExperienceSchema, ParsedJobDescription, ParsedResume
 
 
 SAMPLE_RESUME_TEXT = """
@@ -202,16 +202,20 @@ class TestLLMJDParsing:
 
 
 class TestFallbackBehavior:
-    def test_structure_resume_fallback_when_llm_disabled(self):
+    @patch("app.extraction.resume_structurer.config")
+    def test_structure_resume_fallback_when_llm_disabled(self, mock_config):
         """When LLM_PARSING_ENABLED is False, rule-based parsing is used."""
+        mock_config.llm_parsing_enabled = False
         from app.extraction.resume_structurer import structure_resume
         result = structure_resume(SAMPLE_RESUME_TEXT, include_raw=True)
         # Rule-based parsing should work and not set parse_method to "llm"
         assert result.parse_method != "llm"
         assert result.raw_text == SAMPLE_RESUME_TEXT
 
-    def test_parse_jd_fallback_when_llm_disabled(self):
+    @patch("app.matching.jd_parser.config")
+    def test_parse_jd_fallback_when_llm_disabled(self, mock_config):
         """When LLM_PARSING_ENABLED is False, rule-based JD parsing is used."""
+        mock_config.llm_parsing_enabled = False
         from app.matching.jd_parser import parse_job_description
         result = parse_job_description(SAMPLE_JD_TEXT)
         assert result.raw_text == SAMPLE_JD_TEXT
@@ -229,3 +233,84 @@ class TestFallbackBehavior:
             # Should still get a result from rule-based parsing
             assert result is not None
             assert result.raw_text == SAMPLE_RESUME_TEXT
+
+
+class TestLLMQueryGeneration:
+    @patch("app.job_discovery.llm_query_generator.config")
+    def test_returns_none_without_api_key(self, mock_config):
+        mock_config.anthropic_api_key = ""
+        from app.job_discovery.llm_query_generator import generate_queries_with_llm
+        profile = CandidateProfile(resume=ParsedResume(skills=["Python"], experience=[]))
+        result = generate_queries_with_llm(profile)
+        assert result is None
+
+    @patch("langchain_anthropic.ChatAnthropic")
+    @patch("app.job_discovery.llm_query_generator.config")
+    def test_successful_generation(self, mock_config, mock_chat_cls):
+        mock_config.anthropic_api_key = "test-key"
+
+        from app.job_discovery.llm_query_generator import SearchQueries
+        mock_queries = SearchQueries(queries=[
+            "Blockchain Engineer",
+            "Smart Contract Developer",
+            "DeFi Engineer",
+            "Web3 Developer",
+            "Solidity Developer",
+        ])
+
+        mock_llm = MagicMock()
+        mock_chat_cls.return_value = mock_llm
+        mock_structured = MagicMock()
+        mock_llm.with_structured_output.return_value = mock_structured
+        mock_structured.invoke.return_value = mock_queries
+
+        from app.job_discovery.llm_query_generator import generate_queries_with_llm
+        profile = CandidateProfile(
+            resume=ParsedResume(
+                skills=["Solidity", "Ethereum", "Python"],
+                experience=[ExperienceSchema(job_title="Blockchain Developer", company="Acme")],
+            ),
+            target_titles=["Blockchain Engineer"],
+        )
+        result = generate_queries_with_llm(profile)
+
+        assert result is not None
+        assert len(result) == 5
+        assert "Blockchain Engineer" in result
+
+    @patch("langchain_anthropic.ChatAnthropic")
+    @patch("app.job_discovery.llm_query_generator.config")
+    def test_returns_none_on_exception(self, mock_config, mock_chat_cls):
+        mock_config.anthropic_api_key = "test-key"
+
+        mock_llm = MagicMock()
+        mock_chat_cls.return_value = mock_llm
+        mock_structured = MagicMock()
+        mock_llm.with_structured_output.return_value = mock_structured
+        mock_structured.invoke.side_effect = Exception("API error")
+
+        from app.job_discovery.llm_query_generator import generate_queries_with_llm
+        profile = CandidateProfile(resume=ParsedResume(skills=["Python"], experience=[]))
+        result = generate_queries_with_llm(profile)
+        assert result is None
+
+    @patch("langchain_anthropic.ChatAnthropic")
+    @patch("app.job_discovery.llm_query_generator.config")
+    def test_caps_at_10_queries(self, mock_config, mock_chat_cls):
+        mock_config.anthropic_api_key = "test-key"
+
+        from app.job_discovery.llm_query_generator import SearchQueries
+        mock_queries = SearchQueries(queries=[f"Query {i}" for i in range(15)])
+
+        mock_llm = MagicMock()
+        mock_chat_cls.return_value = mock_llm
+        mock_structured = MagicMock()
+        mock_llm.with_structured_output.return_value = mock_structured
+        mock_structured.invoke.return_value = mock_queries
+
+        from app.job_discovery.llm_query_generator import generate_queries_with_llm
+        profile = CandidateProfile(resume=ParsedResume(skills=["Python"], experience=[]))
+        result = generate_queries_with_llm(profile)
+
+        assert result is not None
+        assert len(result) <= 10

@@ -15,10 +15,12 @@ def _extract_skills_from_text(text: str) -> list[str]:
     return extract_skills_from_text(text)
 
 
-def enrich_job_posting(job: JobPosting) -> JobPosting:
+def enrich_job_posting(job: JobPosting, use_llm: bool = False) -> JobPosting:
     """Enrich a job posting by parsing its description into structured fields.
 
-    Uses the existing JD parser and skill taxonomy to extract skills, requirements, etc.
+    Uses the JD parser and skill taxonomy to extract skills, requirements, etc.
+    By default uses the fast rule-based parser. Set use_llm=True for single-job
+    deep parsing (not recommended for bulk enrichment).
     """
     if not job.description:
         return job
@@ -31,7 +33,16 @@ def enrich_job_posting(job: JobPosting) -> JobPosting:
     clean_text = re.sub(r"<[^>]+>", " ", text)
     clean_text = re.sub(r"&\w+;", " ", clean_text)
 
-    parsed = parse_job_description(clean_text)
+    # For bulk normalization, force rule-based parsing (fast)
+    # to avoid 100s of LLM API calls
+    from app.models.config import config
+    original_llm_setting = config.llm_parsing_enabled
+    if not use_llm:
+        config.llm_parsing_enabled = False
+    try:
+        parsed = parse_job_description(clean_text)
+    finally:
+        config.llm_parsing_enabled = original_llm_setting
 
     # Only fill in fields that aren't already populated
     if not job.required_skills and parsed.required_skills:

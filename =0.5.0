@@ -1,0 +1,25 @@
+Collecting tavily-python
+  Downloading tavily_python-0.7.23-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: requests in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from tavily-python) (2.32.3)
+Collecting tiktoken>=0.5.1 (from tavily-python)
+  Downloading tiktoken-0.12.0-cp39-cp39-macosx_11_0_arm64.whl.metadata (6.7 kB)
+Requirement already satisfied: httpx in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from tavily-python) (0.27.2)
+Requirement already satisfied: regex>=2022.1.18 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from tiktoken>=0.5.1->tavily-python) (2024.9.11)
+Requirement already satisfied: charset-normalizer<4,>=2 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from requests->tavily-python) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from requests->tavily-python) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from requests->tavily-python) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from requests->tavily-python) (2024.8.30)
+Requirement already satisfied: anyio in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from httpx->tavily-python) (4.9.0)
+Requirement already satisfied: httpcore==1.* in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from httpx->tavily-python) (1.0.7)
+Requirement already satisfied: sniffio in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from httpx->tavily-python) (1.3.1)
+Requirement already satisfied: h11<0.15,>=0.13 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from httpcore==1.*->httpx->tavily-python) (0.14.0)
+Requirement already satisfied: exceptiongroup>=1.0.2 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from anyio->httpx->tavily-python) (1.2.2)
+Requirement already satisfied: typing_extensions>=4.5 in /Users/abdelrahmansheta/.pyenv/versions/3.9.7/lib/python3.9/site-packages (from anyio->httpx->tavily-python) (4.15.0)
+Downloading tavily_python-0.7.23-py3-none-any.whl (19 kB)
+Downloading tiktoken-0.12.0-cp39-cp39-macosx_11_0_arm64.whl (997 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 997.1/997.1 kB 5.0 MB/s eta 0:00:00
+Installing collected packages: tiktoken, tavily-python
+Successfully installed tavily-python-0.7.23 tiktoken-0.12.0
+
+[notice] A new release of pip is available: 24.2 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip

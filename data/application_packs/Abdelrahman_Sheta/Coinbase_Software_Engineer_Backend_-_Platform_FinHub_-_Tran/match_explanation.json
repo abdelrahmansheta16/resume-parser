@@ -1,0 +1,39 @@
+{
+  "job": {
+    "job_id": "-3371620965615135474",
+    "title": "Software Engineer, Backend - Platform (FinHub - Transfers)",
+    "company": "Coinbase",
+    "location": "Remote",
+    "employment_type": "Full-time",
+    "description": "&nbsp;...\u2014trading, payments, banking, lending\u2014on blockchain, as well as <b>developing </b>new crypto products. Coinbase\u2019s Core Financial Platform provides...&nbsp;&nbsp;...at least 2+ years of experience in software engineering   \r\n <b>Solid </b>understanding of relational databases and transactions   \r\n Good...&nbsp;",
+    "requirements": [],
+    "preferred_qualifications": [],
+    "required_skills": [],
+    "preferred_skills": [],
+    "required_years_experience": 2.0,
+    "education_requirements": [
+      "bases and transactions   \r\n Good...",
+      "base",
+      "banking"
+    ],
+    "salary_range": "$152.41k - $179.3k",
+    "apply_url": "https://jooble.org/desc/-3371620965615135474?ckey=Solidity+Developer&rgn=55157&pos=17&groupId=33592&elckey=-6600141409084384348&p=1&aq=5755557387938782776&cid=9220&jobAge=703&brelb=100&bscr=146.19473&scr=146.19473",
+    "posting_date": "2026-02-11T13:51:46.3270000",
+    "source": "jooble",
+    "raw_text": "&nbsp;...\u2014trading, payments, banking, lending\u2014on blockchain, as well as <b>developing </b>new crypto products. Coinbase\u2019s Core Financial Platform provides...&nbsp;&nbsp;...at least 2+ years of experience in software engineering   \r\n <b>Solid </b>understanding of relational databases and transactions   \r\n Good...&nbsp;"
+  },
+  "match_score": 74.1,
+  "recommendation": "Good Match",
+  "skill_score": 100.0,
+  "semantic_score": 0.0,
+  "experience_score": 100.0,
+  "title_score": 41.5,
+  "education_score": 100.0,
+  "matched_skills": [],
+  "missing_skills": [],
+  "explanation": [
+    "Meets experience requirement (2.1 years vs 2+ required)",
+    "Most recent role: Full Stack Engineer (Web3)",
+    "Education: Bachelor's Degree in Computer Engineering"
+  ]
+}

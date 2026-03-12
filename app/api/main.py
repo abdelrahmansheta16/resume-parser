@@ -155,7 +155,8 @@ async def parse_resume(
         raise HTTPException(status_code=422, detail=f"Failed to parse file: {doc.error}")
 
     resume = structure_resume(doc.cleaned_text, include_raw=True)
-    resume.parse_method = doc.metadata.get("parse_method")
+    if not resume.parse_method:
+        resume.parse_method = doc.metadata.get("parse_method")
 
     # Auto-queue for review if low confidence
     from app.review.queue import auto_queue_if_needed
@@ -506,7 +507,8 @@ async def build_profile(
         raise HTTPException(status_code=422, detail=f"Failed to parse file: {doc.error}")
 
     resume = structure_resume(doc.cleaned_text, include_raw=True)
-    resume.parse_method = doc.metadata.get("parse_method")
+    if not resume.parse_method:
+        resume.parse_method = doc.metadata.get("parse_method")
 
     titles = [t.strip() for t in target_titles.split(",") if t.strip()]
     locations = [l.strip() for l in target_locations.split(",") if l.strip()]

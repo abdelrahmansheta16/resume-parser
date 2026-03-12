@@ -5,6 +5,7 @@ import csv
 from app.api.schemas import CandidateProfile
 from app.core.logging import get_logger
 from app.core.paths import TAXONOMIES_DIR
+from app.models.config import config
 
 logger = get_logger(__name__)
 
@@ -34,6 +35,17 @@ def generate_queries(profile: CandidateProfile) -> list[str]:
     3. Expand via title taxonomy
     4. Add top skills as query modifiers
     """
+    # Try LLM query generation if enabled
+    if config.llm_parsing_enabled and config.anthropic_api_key:
+        from app.job_discovery.llm_query_generator import generate_queries_with_llm
+        try:
+            llm_queries = generate_queries_with_llm(profile)
+            if llm_queries:
+                return llm_queries
+        except Exception as e:
+            logger.warning("LLM query generation failed, falling back to rule-based: %s", e)
+
+    # Rule-based pipeline
     queries: list[str] = []
 
     # 1. Explicit target titles

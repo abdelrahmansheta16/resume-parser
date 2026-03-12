@@ -45,6 +45,8 @@ class AppConfig(BaseModel):
     llm_parsing_enabled: bool = get_env_bool("LLM_PARSING_ENABLED", False)
     # LinkedIn
     linkedin_search_enabled: bool = get_env_bool("LINKEDIN_SEARCH_ENABLED", True)
+    # Tavily Web Search
+    tavily_api_key: str = get_env("TAVILY_API_KEY", "")
     # Connector resilience
     connector_timeout: int = get_env_int("CONNECTOR_TIMEOUT", 15)
     connector_max_retries: int = get_env_int("CONNECTOR_MAX_RETRIES", 2)
