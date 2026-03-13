@@ -4,30 +4,18 @@ from datetime import datetime, timezone
 
 from app.api.schemas import CandidateProfile, JobDiscoveryResult, JobPosting
 from app.core.logging import get_logger
-from app.job_discovery.adzuna_connector import AdzunaConnector
 from app.job_discovery.cache import get_cached, set_cache
 from app.job_discovery.deduplicator import deduplicate_jobs
-from app.job_discovery.jooble_connector import JoobleConnector
-from app.job_discovery.linkedin_connector import LinkedInConnector
 from app.job_discovery.normalizer import normalize_jobs
 from app.job_discovery.query_generator import generate_queries
-from app.job_discovery.remoteok_connector import RemoteOKConnector
-from app.job_discovery.usajobs_connector import USAJobsConnector
 from app.job_discovery.tavily_connector import TavilyConnector
-from app.job_discovery.weworkremotely_connector import WeWorkRemotelyConnector
 from app.models.config import config
 
 logger = get_logger(__name__)
 
-# All available connectors
+# Active connectors — Tavily only for now
 ALL_CONNECTORS = [
-    TavilyConnector(),          # Primary — open web search
-    JoobleConnector(),
-    AdzunaConnector(),
-    RemoteOKConnector(),
-    WeWorkRemotelyConnector(),
-    USAJobsConnector(),
-    LinkedInConnector(),
+    TavilyConnector(),
 ]
 
 
@@ -47,12 +35,11 @@ def discover_jobs(profile: CandidateProfile) -> list[JobPosting]:
         return []
 
     # Determine locations to search
-    locations = profile.target_locations or [""]
+    locations = profile.target_locations or []
+    if not locations and profile.resume.location:
+        locations = [profile.resume.location]
     if not locations:
-        if profile.resume.location:
-            locations = [profile.resume.location]
-        else:
-            locations = [""]
+        locations = [""]
 
     # 2. Fan out to connectors
     active_connectors = [c for c in ALL_CONNECTORS if c.is_configured()]
@@ -124,9 +111,11 @@ def discover_jobs_async(profile: CandidateProfile, task_id: str) -> None:
 
         update_task(task_id, progress=0.10, message=f"Generated {len(queries)} queries")
 
-        locations = profile.target_locations or [""]
+        locations = profile.target_locations or []
+        if not locations and profile.resume.location:
+            locations = [profile.resume.location]
         if not locations:
-            locations = [profile.resume.location] if profile.resume.location else [""]
+            locations = [""]
 
         active_connectors = [c for c in ALL_CONNECTORS if c.is_configured()]
         if not active_connectors:
